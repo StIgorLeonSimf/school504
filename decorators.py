@@ -43,7 +43,7 @@ def etalon(n, m):
 def smr(x, y):
     return x + y
 
-# print(__name__)
+
 if __name__ == '__main__':
     pass
     # proba()
