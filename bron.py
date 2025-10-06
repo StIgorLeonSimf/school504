@@ -2,6 +2,15 @@ from tkinter import *
 import json
 
 # seats = {str(i): 'free' for i in range(1, 10)}
+with open('text.txt', 'r') as fl:
+    s = fl.read()
+    print(s, type(s))
+    seats = json.loads(s)
+    print(seats)
+c = 0
+exit(0)
+
+
 with open('seats.json', 'r') as fl:
     seats = json.load(fl)
     # json.dump(seats, fl)
