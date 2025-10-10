@@ -40,6 +40,22 @@ def handler(r, c):
         json.dump(tickets, file)
     btns[r][c].config(bg='lightgray')
 
+
+def chandler_free(event, r, c):
+    tickets[str(r)][c]['status'] = 'free'
+    with open('tickets.json', 'w') as file:
+        json.dump(tickets, file)
+    if 0 <= r < 3:
+        color = 'red'
+    elif 3 <= r < 6:
+        color = 'green'
+    elif 6 <= r < 8:
+        color = 'blue'
+    else:
+        color = 'yellow'
+
+    btns[r][c].config(bg=color)
+
 root = Tk()
 root.title('Зал')
 WIDTH = 1366
@@ -88,4 +104,8 @@ for i in range(ROW):
                      command=lambda r=i, c=j: handler(r, c))
         btn.grid(row=i, column=j+1)
         btns[i].append(btn)
+
+for n, i in enumerate(btns):
+    for m, j in enumerate(i):
+        j.bind('<Button-3>', lambda event, r=n, c=m: chandler_free(event, r, c))
 root.mainloop()
