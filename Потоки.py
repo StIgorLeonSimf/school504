@@ -41,8 +41,18 @@ n = len(l)
 # for i in range(n-2, -1, -1):
 #     l[i + 1] = l[i]
 # l[0] = temp
-for i in range(n-1, 0, -1):
-    l[i], l[i-1] = l[i-1], l[i]
-print(l)
+# for i in range(n-1, 0, -1):
+#     l[i], l[i-1] = l[i-1], l[i]
+# print(l)
+
+def proba(n: int, m: int) -> int :
+##    print('Proba', n, m)
+    return n + m
 
 
+xn = proba('12', '25')
+print(xn)
+xn = proba(10, 20)
+print(xn)
+xn = proba(122, 250)
+print(xn)
