@@ -7,8 +7,10 @@ import requests
 from io import BytesIO
 from PIL import Image, ImageTk
 import tkinter as tk
+from tkinter import filedialog
 
 from translate import Translator
+
 
 
 async def generate_image_url():
@@ -62,23 +64,21 @@ def path_name(event):
     return nm_f
 
 
-
-
-
 def save_picture():
     global img_s
-    window_save = tk.Tk()
-    window_save.geometry('200x100+450+200')
-    name = tk.Label(window_save, text='Имя файла')
-    name.pack()
-    name_file = tk.Entry(window_save, width=20)
-    name_file.pack(pady=5)
-    res_name = name_file.bind('<Return>', path_name)
-    print(res_name)
+    if img_s is None:
+        print("No image to save")
+        return
 
-    window_save.mainloop()
-
-    img_s.save(os.path.abspath(res_name))
+    default_name = os.path.basename(name_file)
+    file_path = filedialog.asksaveasfilename(
+        defaultextension=".png",
+        filetypes=[("PNG files", "*.png"), ("All files", "*.*")],
+        initialfile=default_name
+    )
+    if file_path:
+        img_s.save(file_path)
+        print(f"Image saved to {file_path}")
 
 
 if __name__ == "__main__":
